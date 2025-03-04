@@ -1,14 +1,15 @@
 def msg(text):
-    print("-" * 46)
-    print(text.center(46))
-    print("-" * 46)
+    print("-" * 18)
+    print(text.center(18))
+    print("-" * 18)
 
 def menu():
-    msg('Bem Vindo!')
-    print('-----------------')
-    print('- 1 - Depósito  -')
-    print('- 2 - Saque     -')
-    print('- 3 - Extrato   -')
-    print('- 4 - Sair      -')
-    print('-----------------')
+    msg('Menu')
+    print("-" * 18)
+    print('- 1 - Depósito   -')
+    print('- 2 - Saque      -')
+    print('- 3 - Extrato    -')
+    print('- 4 - Sair       -')
+    print("-" * 18)
+
 
