@@ -1,37 +1,45 @@
+from resources import msg
 from resources import menu
 
 saldo = 100
+count = 0
 
 def add_saldo() -> None:
     global saldo
     try:
         n = int(input('Digite o quanto gostaria de adicionar: \n'))
         saldo += n # atribuição com incremento mesmo que saldo = saldo + n
-        print(f'Você adicionou R${n}.') 
+        print(f'Você adicionou R${n:.2f}.') 
     except ValueError: 
         print('Não foi possível realizar a operação.')
     
 def rm_saldo() -> None:
-    global saldo
+    global saldo, count
     try:
+        print(f'Você tem {count + 1}/3 saques disponíveis')
         n = int(input('Digite o quanto gostaria de sacar: \n'))
         if n > saldo:
             print('Saldo insuficiênte:')
         else:
-            print(f'Você sacou R${n}.') 
-            saldo -= n 
+            if n > 500:
+                print('Erro, o saque máximo é limitado a R$500')
+            else: 
+                count += 1
+                saldo -= n 
+                print(f'Você sacou R${n:.2f}.') 
+            
     except ValueError: 
         print('Não foi possível realizar a operação.')
     
 def extrato():
-    print(f"Seu saldo atual é: {saldo}")
+    msg(f"Seu saldo atual é: R$ {saldo:.2f}")
 
 option = {
     1: add_saldo,
     2: rm_saldo,
     3: extrato,
 }
- 
+
 x = True
 
 def main():
@@ -40,16 +48,16 @@ def main():
         menu()
         try:
             option_chosen = int(input('Escolha uma opção: \n'))
-            
             if option_chosen in option:
                 option[option_chosen]()
+                if count == 3: 
+                    print('Limite diário atingido!')
+                    x = False
             elif option_chosen == 4:
                 print('saindo...')
                 x = False
-                break
             else:
                 print('Opção Inválida! Tente novamente.')
         except ValueError:
             print('Opção Inválida! Tente novamente.')
-        
 main()
