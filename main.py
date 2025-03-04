@@ -5,20 +5,31 @@ saldo = 100
 count = 0
 
 def add_saldo() -> None:
+    """
+    Função para adicionar valor ao saldo.
+    """
     global saldo
     try:
         n = int(input('Digite o quanto gostaria de adicionar: \n'))
-        saldo += n # atribuição com incremento mesmo que saldo = saldo + n
-        print(f'Você adicionou R${n:.2f}.') 
+        if n <= 0:
+            print('O valor de depósito deve ser positivo')
+        else:
+            saldo += n # atribuição com incremento mesmo que saldo = saldo + n
+            print(f'Você adicionou R${n:.2f}.') 
     except ValueError: 
         print('Não foi possível realizar a operação.')
     
 def rm_saldo() -> None:
+    """
+    Função para realizar saque do saldo.
+    """
     global saldo, count
     try:
         print(f'Você tem {count + 1}/3 saques disponíveis')
         n = int(input('Digite o quanto gostaria de sacar: \n'))
-        if n > saldo:
+        if n <= saldo:
+            print('O valor de depósito deve ser positivo')           
+        elif n > saldo:
             print('Saldo insuficiênte:')
         else:
             if n > 500:
@@ -32,6 +43,9 @@ def rm_saldo() -> None:
         print('Não foi possível realizar a operação.')
     
 def extrato():
+    """
+    Função de extrato para mostrar o saldo atual do usuário.
+    """
     msg(f"Seu saldo atual é: R$ {saldo:.2f}")
 
 option = {
