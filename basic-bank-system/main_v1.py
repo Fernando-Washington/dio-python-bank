@@ -1,5 +1,5 @@
-from resources import msg
-from resources import menu
+from resources_v1 import msg
+from resources_v1 import menu
 
 saldo = 100
 count = 0
@@ -27,8 +27,8 @@ def rm_saldo() -> None:
     try:
         print(f'Você tem {count + 1}/3 saques disponíveis')
         n = int(input('Digite o quanto gostaria de sacar: \n'))
-        if n <= saldo:
-            print('O valor de depósito deve ser positivo')           
+        if n <= 0:
+            print('O valor do saque deve ser positivo')           
         elif n > saldo:
             print('Saldo insuficiênte:')
         else:
